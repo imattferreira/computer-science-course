@@ -1,0 +1,23 @@
+body {
+  background-image: url('https://w7.pngwing.com/pngs/109/61/png-transparent-t-shirt-cowboy-boot-hat-boots-cowboy-hat-boots-thumbnail.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.content {
+  height: 300px;
+  padding: 5px 40px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+h1 {
+  color: blue;
+}
+
+p {
+  font-style: italic;
+  color: white;
+  border: 1px solid red;
+}

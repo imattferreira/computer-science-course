@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    table {
+      /* border: 1px solid red; */
+      border: none;
+    }
+    /* th {
+    } */
+
+
+    tr {
+      border: 1px solid blue;
+      /* border: none; */
+
+      text-align: center;
+
+      padding: 0.4rem;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Table</h1>
+
+  <table border="1" width="70%" style="background-color: coral;">
+    <caption align="top">top legend</caption>
+    <caption align="bottom">bottom legend</caption>
+    <thead>
+      <tr style="background-color: blue;">
+        <th style="background-color: black; color: white;">Frutas</th>
+        <th>Legumes</th>
+        <th colspan="2">Flores</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td style="text-align: center;">Maçãs</th>
+        <td style="text-align: start;">Cenouras</th>
+        <td style="text-align: end;">Margaridas</th>
+      </tr>
+
+      <tr>
+        <td rowspan="2" style="text-align: justify;">Laranjas</td>
+        <td style="vertical-align: text-bottom; padding: 6px;">Batatas</td>
+        <td>Orquídeas</td>
+      </tr>
+
+      <tr>
+        <td>Peras</td>
+        <td>Abóbora</td>
+        <td>Rosas</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>
