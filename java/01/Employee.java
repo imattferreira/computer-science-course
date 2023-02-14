@@ -1,5 +1,21 @@
 import java.util.Scanner;
 
+// TODO fix
+class Main {
+  public static void main(String[] args) {
+    Employee employee = new Employee();
+
+    employee.input();
+
+    float salaryWithDiscounts = employee.getSalaryWithDiscounts();
+
+    System.out.printf("código %d \n", employee.code);
+    System.out.printf("nome %s  \n", employee.name);
+    System.out.printf("salário-base %.2f  \n", employee.baseSalary);
+    System.out.printf("salário líquido %.2f  \n", salaryWithDiscounts);
+  }
+}
+
 class Employee {
   int code;
   String name;
@@ -25,7 +41,7 @@ class Employee {
     this.telephoneNumber = Utils.printMessageAndReturnInput(input, "digite o número de telefone: ");
     this.baseSalary = Float.parseFloat(Utils.printMessageAndReturnInput(input, "digite o salário-base: "));
     this.inssPercentage = Float.parseFloat(Utils.printMessageAndReturnInput(input, "digite a porcentagem de INSS: "));
-    this.irrfPercentage = Float.parseFloat(Utils.printMessageAndReturnInput(input, "digite a porcentagem de IFFF: "));
+    this.irrfPercentage = Float.parseFloat(Utils.printMessageAndReturnInput(input, "digite a porcentagem de IRRF: "));
     this.familySalary = Float
         .parseFloat(Utils.printMessageAndReturnInput(input, "digite o valor de salário família: "));
     this.transport = Float.parseFloat(Utils.printMessageAndReturnInput(input, "digite o valor de transporte: "));
@@ -58,21 +74,5 @@ class Utils {
   public static String printMessageAndReturnInput(Scanner input, String message) {
     System.out.printf(message);
     return input.next();
-  }
-}
-
-// TODO fix
-class Main {
-  public static void main(String[] args) {
-    Employee employee = new Employee();
-
-    employee.input();
-
-    float salaryWithDiscounts = employee.getSalaryWithDiscounts();
-
-    System.out.printf("código %d ", employee.code);
-    System.out.printf("nome %s ", employee.name);
-    System.out.printf("salário-base %.2f ", employee.baseSalary);
-    System.out.printf("salário líquido %.2f ", salaryWithDiscounts);
   }
 }
