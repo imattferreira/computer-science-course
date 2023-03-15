@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: show branch name
         shell: bash
-        run: echo ${GITHUB_REF}
+        run: echo ${{GITHUB_REF}}
       - name: ✅ Checkout
         uses: actions/checkout@v3
         with:
