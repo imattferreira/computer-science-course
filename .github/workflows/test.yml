@@ -15,6 +15,9 @@ jobs:
     # If it takes more than 8 minutes, it most likely already failed without a exit condition
     timeout-minutes: 8
     steps:
+      - name: show branch name
+        shell: bash
+        run: echo ${GITHUB_REF}
       - name: ✅ Checkout
         uses: actions/checkout@v3
         with:
