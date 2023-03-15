@@ -1,7 +1,6 @@
 name: Lighthouse for PR
 on:
   pull_request:
-    path:
     branches:
       - 'ci/*'
       # - 'feat/**'
