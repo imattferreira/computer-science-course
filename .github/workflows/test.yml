@@ -1,8 +1,7 @@
 name: Lighthouse for PR
-on:
-  pull_request:
-    branches:
-      - 'ci/*'
+on: [pull_request]
+    # branches:
+      # - 'ci/*'
       # - 'feat/**'
   #     - 'fix/**'
   #     - 'chore/**'
