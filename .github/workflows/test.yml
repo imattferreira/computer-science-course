@@ -1,0 +1,28 @@
+name: Lighthouse for PR
+on:
+  pull_request:
+    path:
+    branches:
+      - 'ci/*'
+      # - 'feat/**'
+  #     - 'fix/**'
+  #     - 'chore/**'
+  #     - 'refactor/**'
+  #     - 'build/**'
+
+jobs:
+  lighthouse_main:
+    runs-on: ubuntu-latest
+    # Github Actions default timeout-minutes are insanely high and we pay for that
+    # If it takes more than 8 minutes, it most likely already failed without a exit condition
+    timeout-minutes: 8
+    steps:
+      - name: ✅ Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: 🟩 Use Node.js 16.3.0
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.3.0'
