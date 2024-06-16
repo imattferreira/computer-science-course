@@ -1,0 +1,40 @@
+version: "3"
+
+networks:
+  wordpress_net:
+    driver: bridge
+
+volumes:
+  mariadb_vol: {}
+  wordpress_vol: {}
+
+services:
+  db:
+    container_name: db
+    image: mariadb:latest
+    networks:
+      - wordpress_net
+    volumes:
+      - mariadb_vol:/var/lib/mysql
+    environment:
+      MYSQL_USER: wordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_ROOT_PASSWORD: senha
+      MYSQL_PASSWORD: senha
+
+  meublog:
+    container_name: meublog
+    image: wordpress:latest
+    networks:
+      - wordpress_net
+    volumes:
+      - wordpress_vol:/var/www/html
+    ports:
+      - "8080"
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: senha
+      WORDPRESS_DB_NAME: wordpress

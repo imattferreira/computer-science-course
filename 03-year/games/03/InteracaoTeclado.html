@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Um herói que atira</title>
+    <script src="./keyboard.js"></script>
+    <script src="./hero.js"></script>
+    <script src="./ball.js"></script>
+    <!-- Utilizar da aula anterior, não esquecer de alterar para não ficar quicando a "bola"-->
+    <script src="./animation.js"></script>
+    <!-- Utilizar da aula anterior -->
+  </head>
+  <body>
+    <canvas id="canvas_teclado_3" width="500" height="500"> </canvas>
+    <script>
+      const canvas = document.getElementById("canvas_teclado_3");
+      const ctx = canvas.getContext("2d");
+
+      const keyboard = new Teclado(document);
+      const animation = new Animation(ctx);
+
+      const hero = new Heroi(ctx, keyboard, animation);
+
+      hero.x = 0;
+      hero.y = 100;
+      animation.sprite(hero);
+      keyboard.disparou(ESPACO, function () {
+        hero.atirar();
+      });
+
+      animation.start();
+    </script>
+  </body>
+</html>

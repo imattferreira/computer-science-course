@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas width="500" height="500" />
+  </body>
+  <script>
+    class Animation {
+      constructor(ctx) {
+        this.ctx = ctx;
+        this.sprites = [];
+        this.enabled = false;
+      }
+
+      start() {
+        this.enabled = true;
+        this.#nextFrame();
+      }
+
+      stop() {
+        this.enabled = false;
+      }
+
+      sprite(spr) {
+        this.sprites.push(spr);
+      }
+
+      #nextFrame() {
+        if (!this.enabled) {
+          return;
+        }
+
+        this.#cleanup();
+
+        for (const spr of this.sprites) {
+          spr.frame();
+        }
+
+        for (const spr of this.sprites) {
+          spr.draw();
+        }
+
+        requestAnimationFrame(() => {
+          this.#nextFrame();
+        });
+      }
+
+      #cleanup() {
+        this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+      }
+    }
+
+    class Ball {
+      constructor(ctx) {
+        this.ctx = ctx;
+        this.x = 0;
+        this.y = 0;
+        this.speedX = 0;
+        this.speedY = 0;
+        this.color = "black";
+        this.radius = 10;
+      }
+
+      draw() {
+        this.ctx.save();
+        this.ctx.fillStyle = this.color;
+
+        this.ctx.beginPath();
+        this.ctx.arc(this.x, this.y, this.radius, 0.2 * Math.PI, false);
+        this.ctx.fill();
+        this.ctx.restore();
+      }
+
+      frame() {
+        if (
+          this.x < this.radius ||
+          this.x > this.ctx.canvas.width - this.radius
+        ) {
+          this.speedX *= -1;
+        }
+
+        if (
+          this.y < this.radius ||
+          this.y > this.ctx.canvas.height - this.radius
+        ) {
+          this.speedY *= -1;
+        }
+
+        this.x += this.speedX;
+        this.y += this.speedY;
+      }
+    }
+
+    const canvas = document.querySelector("canvas");
+    const ctx = canvas.getContext("2d");
+
+    const animation = new Animation(ctx);
+    const red = new Ball(ctx);
+    const blue = new Ball(ctx);
+
+    red.x = 100;
+    red.y = 200;
+    red.speedX = 20;
+    red.speedY = -10;
+    red.color = "red";
+    red.radius = 20;
+
+    blue.x = 200;
+    blue.y = 100;
+    blue.speedX = -10;
+    blue.speedY = 20;
+    blue.color = "blue";
+    blue.radius = 30;
+
+    animation.sprite(red);
+    animation.sprite(blue);
+
+    animation.start();
+  </script>
+</html>
