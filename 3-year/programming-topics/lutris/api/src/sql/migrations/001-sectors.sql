@@ -1,0 +1,5 @@
+CREATE TABLE sectors (
+	idSector INT PRIMARY KEY IDENTITY(1,1),
+	nameSector VARCHAR(40) NOT NULL,
+	launchDate DATE NOT NULL
+);

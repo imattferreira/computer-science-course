@@ -1,0 +1,5 @@
+CREATE TABLE units (
+	idUnit INT PRIMARY KEY IDENTITY(1,1),
+	city VARCHAR(40) NOT NULL,
+	launchDate DATE NOT NULL
+);

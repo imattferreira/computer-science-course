@@ -1,0 +1,50 @@
+:root {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+    margin: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background: url("imgs/background.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+canvas {
+    margin: 0 auto;
+}
+
+.menu {
+    position: absolute;
+    background-color: white;
+    border-radius: 8px;
+    border: 2px solid red;
+    padding: 32px 16px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.menu h1 {
+    color: red;
+    margin-bottom: 16px;
+}
+
+.pause-menu {
+    display: none;
+}

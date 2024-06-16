@@ -1,0 +1,58 @@
+services:
+  db:
+    container_name: lutris-db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: always
+    platform: linux/amd64
+    ports:
+      - "1433:1433"
+    volumes:
+      # - lutris:/var/opt/mssql
+      - lutris:/app
+      - ./api/src/sql:/tmp
+    environment:
+      MSSQL_SA_PASSWORD: yourStrong(!)Password
+      ACCEPT_EULA: Y
+    networks:
+      - lutris-net
+
+  api:
+    container_name: lutris-api
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./api/src/main/resources/Images:/api/src/main/resources/Images
+    networks:
+      - lutris-net
+    depends_on:
+      - db
+    links:
+      - db:lutris-db
+    environment:
+      DATABASE_URL: jdbc:sqlserver://host.docker.internal:1433;database=lutris;user=sa;password=yourStrong(!)Password;encrypt=true;trustServerCertificate=true;loginTimeout=30;
+
+  web:
+    container_name: lutris-web
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    links:
+      - api:lutris-api
+    # environment:
+    #   NEXT_PUBLIC_API_URL: http://host.docker.internal:8080
+    networks:
+      - lutris-net
+
+volumes:
+  lutris:
+
+networks:
+  lutris-net:
+    driver: bridge
